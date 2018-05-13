@@ -10,6 +10,7 @@ export default Controller.extend({
 
   responseMessage: '',
   emailAddress: '',
+  headerMessage: 'please type your e-mail address',
 
 //  isDisabled: empty('emailAddress')
 
