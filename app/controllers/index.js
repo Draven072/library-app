@@ -8,12 +8,13 @@ export default Controller.extend({
 
 //  isDisabled: true,
 
+  responseMessage: '',
   emailAddress: '',
 
 //  isDisabled: empty('emailAddress')
 
   isValid: match('emailAddress', /^.+@.+\..+$/),
-  isDisabled: not('isValid')
+  isDisabled: not('isValid'),
 
 /*
   isDisabled: computed('emailAddress', function() {
@@ -28,4 +29,14 @@ export default Controller.extend({
     console.log('observer is called', this.get('emailAddress'));
   })
 */
+
+  actions: {
+
+    saveInvitation() {
+      alert(`Saving of the following email address is in progress: ${this.get('emailAddress')}`);
+      this.set('responseMessage', `Thank you! We've just saved your email address: ${this.get('emailAddress')}`);
+      this.set('emailAddress', '');
+    }
+  }
+
 });
