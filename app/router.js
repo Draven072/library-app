@@ -10,6 +10,7 @@ Router.map(function() {
   this.route('about');
   this.route('contacts');
   this.route('base');
+  this.route('response');
 
   this.route('admin', function() {
     this.route('invitations');
