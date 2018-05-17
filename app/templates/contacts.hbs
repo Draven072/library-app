@@ -6,14 +6,14 @@
   <form id="contactForm">
 <!--  <label for="contactForm" class="col-xs-10">Feedback:</label> -->
     <div class="form-group form-group-lg row">
-      <label for="inputEmail" class="col-sm-2 col-form-label col-form-label-lg">Email: </label>
+      <label for="model.inputEmail" class="col-sm-2 col-form-label col-form-label-lg">Email: </label>
       <div class="col-sm-6">
         {{input type="email" id="inputEmail" value=emailContactAddress class="form-control" placeholder="Please type your e-mail address." autofocus="autofocus"}}
       </div>
     </div>
 
     <div class="form-group form-group-lg row">
-      <label for="inputMessage" class="col-sm-2 col-form-label col-form-label-lg">Message: </label>
+      <label for="model.inputMessage" class="col-sm-2 col-form-label col-form-label-lg">Message: </label>
       <div class="col-sm-10">
         {{textarea id="inputMessage" value=textContactMessage class="form-control" placeholder="Please type your message here. (At least 5 characters.)"}}
       </div>
@@ -30,5 +30,5 @@
   {{#if responseMessage}}
      <div class="alert alert-success">{{responseMessage}}</div>
   {{/if}}
-  
+
 </div>

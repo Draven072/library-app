@@ -14,17 +14,31 @@ export default Controller.extend({
   isValid: and('isLongEnough', 'isValidEmail'),
   isDisabled: not('isValid'),
 
+  model() {
+    return this.store.createRecord('contact');
+  },
+
   actions: {
     saveContactMessage: function(){
-      var email = this.get('emailContactAddress');
-      var message = this.get('textContactMessage');
+//      var email = this.get('emailContactAddress');
+//      var message = this.get('textContactMessage');
 
-      alert('Sending your message in progress...');
+//      alert('Sending your message in progress...');
 
-      var responseMessage = 'To: ' + email + ', Message: ' + message;
-      this.set('responseMessage', responseMessage);
+    //  var responseMessage = 'To: ' + email + ', Message: ' + message;
+    //  this.set('responseMessage', responseMessage);
+    //  this.set('emailContactAddress', '');
+    //  this.set('textContactMessage', '');
+
+    const email = this.get('emailContactAddress');
+    const message = this.get('textContactMessage');
+
+    const newContact = this.store.createRecord('contact', { email:email, message:message });
+    newContact.save().then(response => {
+      this.set('responseMessage', `Thank you! We saved your message with the following id: ${response.get('id')}`);
       this.set('emailContactAddress', '');
       this.set('textContactMessage', '');
+    });
 
     }
   }
