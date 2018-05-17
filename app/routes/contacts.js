@@ -23,16 +23,13 @@ model() {
     }
 */
 
-    saveContactMessage(newContact) {
-      newContact.save().then(() => this.transitionTo('response'));
+        saveContactMessage(newContact) {
+          newContact.save().then(() => this.transitionTo('response'));
+        },
 
-    },
-
-    willTransition() {
-      // rollbackAttributes() removes the record from the store
-      // if the model 'isNew'
-        this.controller.get('model').rollbackAttributes();
-    }
+        willTransition() {
+          this.controller.get('model').rollbackAttributes();
+        }
 
   }
 

@@ -9,6 +9,11 @@
       <label for="model.inputEmail" class="col-sm-2 col-form-label col-form-label-lg">Email: </label>
       <div class="col-sm-6">
         {{input type="email" id="inputEmail" value=model.email class="form-control" placeholder="Please type your e-mail address." autofocus="autofocus"}}
+        {{#if (v-get model 'email' 'isInvalid')}}
+          <div class="error">
+            {{v-get model 'email' 'message'}}
+          </div>
+        {{/if}}
       </div>
     </div>
 
@@ -22,7 +27,7 @@
 
     <div class="form-group form-group-lg row">
       <div class="col-xs-10 col-xs-offset-1 col-sm-offset-0 col-sm-4 col-md-3">
-        <button disabled={{isDisabled}} {{action 'saveContactMessage' model}} class="btn btn-primary btn-lg btn-block">Send Message</button>
+        <button disabled={{v-get model 'isInvalid'}} {{action 'saveContactMessage' model}} class="btn btn-primary btn-lg btn-block">Send Message</button>
       </div>
     </div>
   </form>
