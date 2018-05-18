@@ -10,7 +10,7 @@
       <div class="col-sm-6">
         {{input type="email" id="inputEmail" value=model.email class="form-control" placeholder="Please type your e-mail address." autofocus="autofocus"}}
         {{#if (v-get model 'email' 'isInvalid')}}
-          <div class="error">
+        <div class="error">
             {{v-get model 'email' 'message'}}
           </div>
         {{/if}}
