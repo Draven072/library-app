@@ -1,23 +1,14 @@
+import { match, gte, and, not } from '@ember/object/computed';
 import DS from 'ember-data';
-import { validator, buildValidations } from 'ember-cp-validations';
 
+export default DS.Model.extend({
 
-const Validations = buildValidations({
-  email: [
-    validator('presence', true),
-    validator('format', { type: 'email' })
-  ],
-  message: [
-    validator('presence', true),
-    validator('length', {
-      min: 5,
-    })
-  ],
-});
-
-
-export default DS.Model.extend(Validations, {
   email: DS.attr('string'),
   message: DS.attr('string'),
 
+  isValidEmail: match('email', /^.+@.+\..+$/),
+  isMessageEnoughLong: gte('message.length', 5),
+
+  isValid: and('isValidEmail', 'isMessageEnoughLong'),
+  isNotValid: not('isValid')
 });

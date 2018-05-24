@@ -3,6 +3,7 @@ import { notEmpty } from '@ember/object/computed';
 import Faker from 'faker';
 
 export default DS.Model.extend({
+
   name: DS.attr('string'),
   address: DS.attr('string'),
   phone: DS.attr('string'),
