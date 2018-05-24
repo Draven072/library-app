@@ -47,3 +47,22 @@ html {
 .not-bold {
   font-weight: normal!important;
 }
+
+table {
+  counter-reset: rowNumber-1;
+}
+
+table tr {
+  counter-increment: rowNumber;
+}
+/*
+tbody tr:hover {
+  background: #f3bd48;
+  color: #fff;
+}
+*/
+table tr td:first-child::before {
+  content: counter(rowNumber);
+  min-width: 1em;
+  margin-right: 0.5em;
+}

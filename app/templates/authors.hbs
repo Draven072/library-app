@@ -3,7 +3,8 @@
 <table class="table table-bordered table-striped">
   <thead>
   <tr>
-    <th>
+    <th class="vtop" style="width:1em">#</th>
+    <th class="vtop">
       Name
       <br><small class="small not-bold">(Click on name for editing)</small>
     </th>
@@ -13,6 +14,7 @@
   <tbody>
   {{#each model as |author|}}
     <tr>
+      <td></td>
       <td>
         {{#if author.isEditing}}
           <form {{action 'saveAuthor' author on='submit'}} class="form-inline">
@@ -36,6 +38,16 @@
         </ul>
       </td>
     </tr>
+    {{else}}
+    {{#if model.isUpdating}}
+      {{spinner-cube}}
+    {{else}}
+      <div class="col-md-12 text-center">
+        <div class="alert alert-info">
+          Sorry, no result.
+        </div>
+      </div>
+    {{/if}}
   {{/each}}
   </tbody>
-</table> 
+</table>

@@ -3,9 +3,7 @@
 <table class="table table-bordered table-striped">
   <thead>
   <tr>
-    <th class="vtop">
-      #
-    </th>
+    <th class="vtop" style="width:1em">#</th>
     <th class="vtop wider">
       Author
       <br><small class="small not-bold">(Click on book's title for editing)</small>
@@ -24,7 +22,7 @@
   <tbody>
   {{#each model as |book|}}
     <tr>
-      <td>1.</td>
+      <td></td>
 
       <td>
         {{#if book.isAuthorEditing}}
@@ -78,6 +76,16 @@
       </td>
 
     </tr>
+    {{else}}
+    {{#if model.isUpdating}}
+      {{spinner-cube}}
+    {{else}}
+      <div class="col-md-12 text-center">
+        <div class="alert alert-info">
+          Sorry, no result.
+        </div>
+      </div>
+    {{/if}}
   {{/each}}
   </tbody>
 </table>
