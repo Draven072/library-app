@@ -1,5 +1,6 @@
-import { lte, not, or } from '@ember/object/computed';
 import Component from '@ember/component';
+import { get } from '@ember/object';
+import { lte, not, or } from '@ember/object/computed';
 
 const MAX_VALUE = 100;
 
@@ -26,12 +27,14 @@ export default Component.extend({
       if (this.get('isCounterValid')) {
 
         // Action up to Seeder Controller with the requested amount
-        this.sendAction('generateAction', this.get('counter'));
+        //this.sendAction('generateAction', this.get('counter'));
+        get(this, 'generateAction')(this.get('counter'));
       }
     },
 
     deleteAction() {
-      this.sendAction('deleteAction');
+      //this.sendAction('deleteAction');
+      get(this, 'deleteAction')();
     }
 
   }

@@ -3,20 +3,45 @@
 <table class="table table-bordered table-striped">
   <thead>
   <tr>
-    <th>
+    <th class="vtop">
+      #
+    </th>
+    <th class="vtop wider">
+      Author
+      <br><small class="small not-bold">(Click on book's title for editing)</small>
+    </th>
+    <th class="vtop wider">
       Title
-      <br><small class="small not-bold">(Click on book's totle for editing)</small>
+      <br><small class="small not-bold">(Click on book's title for editing)</small>
     </th>
     <th class="vtop">Year</th>
-<!--
-    <th class="vtop">Author</th>
-    <th class="vtop">Library</th>
--->
+    <th>
+      Library
+      <br><small class="small not-bold">(Click on book's title for editing)</small>
+    </th>
   </tr>
   </thead>
   <tbody>
   {{#each model as |book|}}
     <tr>
+      <td>1.</td>
+
+      <td>
+        {{#if book.isAuthorEditing}}
+
+          {{author-select
+            book=book
+            authors=authors
+            default=book.author
+            press_author=(route-action 'saveAuthor')}}
+
+          <button class="btn btn-danger" {{action 'cancelAuthorEdit' book}}>Cancel</button>
+
+        {{else}}
+          <span {{action 'editAuthor' book}}>{{book.author.name}}</span>
+        {{/if}}
+      </td>
+
       <td>
         {{#if book.isEditing}}
           <form {{action 'saveBook' book on='submit'}} class="form-inline">
@@ -32,17 +57,26 @@
           <span {{action 'editBook' book}}>{{book.title}}</span>
         {{/if}}
       </td>
+
       <td>{{book.releaseYear}}</td>
-<!--
-      <td>{{author.books}}</td>
+
       <td>
-        <ul>
-          {{#each books.library as |library|}}
-            <li>{{library.name}}</li>
-          {{/each}}
-        </ul>
+
+        {{#if book.isLibraryEditing}}
+
+          {{library-select
+            book=book
+            libraries=libraries
+            default=book.library
+            press_select=(route-action 'saveLibrary')}}
+
+          <button class="btn btn-danger" {{action 'cancelLibraryEdit' book}}>Cancel</button>
+
+        {{else}}
+          <span {{action 'editLibrary' book}}>{{book.library.name}}</span>
+        {{/if}}
       </td>
--->
+
     </tr>
   {{/each}}
   </tbody>
