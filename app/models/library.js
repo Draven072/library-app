@@ -1,5 +1,5 @@
 import DS from 'ember-data';
-import { notEmpty } from '@ember/object/computed';
+import { notEmpty, match, and } from '@ember/object/computed';
 import Faker from 'faker';
 
 export default DS.Model.extend({
@@ -10,7 +10,10 @@ export default DS.Model.extend({
 
   books: DS.hasMany('book', { inverse: 'library', async: true }),
 
-  isValid: notEmpty('name'),
+  isValidPhone: match('phone', /(^(?!\+.*\(.*\).*--.*$)(?!\+.*\(.*\).*-$)(\+[0-9]{1,3}\([0-9]{1,3}\)[0-9]{1}([-0-9]{0,8})?([0-9]{0,1})?)$)|(^[0-9]{1,4}$)/),
+
+  isValidName: notEmpty('name'),
+  isValid: and('isValidPhone', 'isValidName'),
 
   randomize() {
     this.set('name', Faker.company.companyName() + ' Library');
